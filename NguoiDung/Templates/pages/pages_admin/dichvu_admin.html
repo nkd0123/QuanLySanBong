@@ -1,0 +1,89 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Dịch vụ
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dịch vụ</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="{% url 'dv' %}">Dịch vụ</a>
+                </li>
+                
+                
+            </ul>
+        </div>
+        <a href="{% url 'themdv' %}" class="btn-add">
+            <i class='bx bx-plus'></i>
+            <span class="text">Thêm</span>
+        </a>
+        
+        
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Danh sách dịch vụ</h3>
+                <form action="{% url 'searchdv' %}">
+                    {% csrf_token %}
+                    <div class="form-input">
+                        <input name="search" type="search" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên dịch vụ</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dv in DS_dichVu %}
+                        <tr>
+                            <td>{{dv.id}}</td>
+                            <td>
+                                <p>{{dv.tenDV}}</p>
+                            </td>
+                            <td>{{dv.gia}}</td>
+                            <td>
+                                <a href="/NguoiDung/suadv/{{dv.id}}" class="btn-edit">
+                                    <i class='bx bx-edit-alt'></i>
+                                    <span class="text">Sửa</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/NguoiDung/xoadv/{{dv.id}}" class="btn-minus">
+                                    <span class="text">Xóa</span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<!-- MAIN -->
+<!-- CONTENT -->
+{% endblock %}

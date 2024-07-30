@@ -1,0 +1,80 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Khách hàng
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Khách hàng</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Khách hàng</a>
+                </li>   
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Danh sách khách hàng</h3>
+                <form action="{% url 'searchkh' %}" method="GET">
+                    {% csrf_token %}
+                    <div class="form-input">
+                        <input name="searchkh" type="search" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Họ tên</th>
+                        <th>SĐT</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for kh in DS_KhachHang %}
+                        <tr>
+                            <td>{{kh.username}}</td>
+                            <td>
+                                <p>{{kh.hoTen}}</p>
+                            </td>
+                            <td>{{kh.SDT}}</td>
+                            <td>{{kh.diaChi}}</td>
+                            <td>{{kh.email}}</td>
+                            <td>
+                                <a href="{% url 'xoakh' username_kh=kh.username %}" class="btn-minus">
+                                    <span class="text">Xóa</span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<!-- MAIN -->
+<!-- CONTENT -->
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Thêm dịch vụ
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Thêm sân bóng</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="{% url 'dv' %}">Sân bóng</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Thêm sân bóng</a>
+                </li>
+               
+                
+            </ul>
+        </div>
+    </div>
+    <div class="container mt-0">
+        <form class="row g-3" method="POST">
+            {% csrf_token %}
+            <div class="col-6">
+                <label for="inputName" class="form-label">Tên sân</label>
+                <input name="tensan" type="text" class="form-control" id="inputName">
+            </div>
+            <div class="col-md-3">
+                <label for="inputCost" class="form-label">kích thước</label>
+                <select name="kichthuoc" class="form-control" id="selectService">
+                        <option value="5x5">5x5</option>
+                        <option value="7x7">7x7</option>
+                        <option value="9x9">9x9</option>
+                        <option value="11x11">11x11</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="inputCost" class="form-label">Loại sân</label>
+                <select name="loaisan" class="form-control" id="selectService">
+                    {%for loai in DS_Loai%}
+                    <option value="{{loai.tenLoai}}">{{loai.tenLoai}}</option>
+                    {%endfor%}
+            </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Thêm</button>
+            </div>
+        </form>
+    </div>
+
+</main>
+{%endblock%}

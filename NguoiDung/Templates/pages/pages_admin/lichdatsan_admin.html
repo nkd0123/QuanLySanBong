@@ -1,0 +1,71 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Lịch đặt sân
+{% endblock %}
+{% block content %}
+<style>
+    
+</style>
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Lịch đặt sân</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Lịch đặt sân</a>
+                </li> 
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Danh sách lịch đặt sân</h3>
+                
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã lịch đặt</th>
+                        <th>Thời gian đặt</th>
+                        <th>Tên khách</th>
+                        <th>Tên sân</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for lich in DS_Lich%}
+                    <tr>
+                        <td>{{lich.maLichDat}}</td>
+                        <td>
+                            {{lich.thoiGianDat|date:'d/m/Y H:i'}}
+                        </td>
+                        <td>{{lich.kh.hoTen}}</td>
+                        <td>{{lich.san.tenSan}}</td>
+
+                        
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<!-- MAIN -->
+<!-- CONTENT -->
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+    <nav>
+        <i class='bx bx-menu'></i>
+        <a href="#" class="profile">
+            <i class='bx bxs-user'></i>
+        </a>
+    </nav>
+    <main>
+        <div style="padding: 20px; border-radius:10px; width: 500px; background-color: #F9F9F9;">
+            {% if session_username %}
+                <h1 >Xin chào: {{ session_username }}</h1>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

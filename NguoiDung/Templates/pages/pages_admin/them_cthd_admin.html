@@ -1,0 +1,57 @@
+{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Thêm hóa đơn
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Thêm chi tiết hóa đơn</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="#">Chi tiết hóa đơn</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Thêm chi tiết hóa đơn</a>
+                </li>
+                
+            </ul>
+        </div>
+
+    </div>
+    <div class="container mt-0">
+        <form class="row g-3" method="post">
+            {% csrf_token %}
+            <div class="col-5">
+                <input name="soluong" type="hidden" class="form-control" id="inputName1">
+                <label for="inputName1" class="form-label">Dịch vụ</label>
+                <select name="dichvu" class="form-control" id="selectService">
+                    {% for dv in DichVu %}
+                        <option value="{{ dv.tenDV }}">{{ dv.tenDV }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-5">
+                <label for="inputName1" class="form-label">Số lượng</label>
+                <input name="soluong" type="text" class="form-control" id="inputName1">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Thêm mới</button>
+            </div>
+        </form>
+    </div>
+
+</main>
+{%endblock%}

@@ -1,0 +1,65 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Sửa hóa đơn
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Sửa hóa đơn</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="{% url 'hd' %}">Hóa đơn</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Sửa hóa đơn</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="container mt-0">
+        {%if HoaDon %}
+        <form class="row g-3" method="post">
+            {% csrf_token %}
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Số HD</label>
+                <input name="soHD" type="text" class="form-control" id="inputZip" value="{{HoaDon.soHD}}">
+            </div>
+            <div class="col-md-3">
+                <label for="inputDate" class="form-label">Ngày tạo</label>
+                <input name="ngayTao" type="date" class="form-control" id="inputDate" value="{{NgayTao}}">
+            </div>
+            <div class="col-5">
+                <label for="inputName" class="form-label">Tổng tiền</label>
+                <input name="tongTien" type="text" class="form-control" id="inputName" value="{{HoaDon.tongTien}}">
+            </div>
+            <div class="col-5">
+                <label for="inputName1" class="form-label">Tên khách hàng</label>
+                <input name="tenKH" type="text" class="form-control" id="inputName1" value="{{HoaDon.kh.hoTen}}">
+            </div>
+            <div class="col-5">
+                <label for="inputName1" class="form-label">Tên nhân viên</label>
+                <input name="id" type="text" class="form-control" id="inputName1" value="{{HoaDon.nv.hoTen}}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Sửa</button>
+            </div>
+        </form>
+        {%endif%}
+    </div>
+
+</main>
+{%endblock%}

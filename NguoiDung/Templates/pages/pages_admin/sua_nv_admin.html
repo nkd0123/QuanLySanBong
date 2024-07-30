@@ -1,0 +1,70 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Sửa nhân viên
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Sửa nhân viên</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="{% url 'nv' %}">Nhân viên</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Sửa nhân viên</a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    <div class="container mt-0">
+        {%if NhanVien %}
+        <form class="row g-3" method="POST">
+            {% csrf_token %}
+            <div class="col-6">
+                <input type="hidden" class="form-control" id="inputID" name="idNhanVien" value="{{ NhanVien.id }}">
+                <label for="inputName" class="form-label">Họ tên</label>
+                <input type="text" class="form-control" id="inputName" Name="hoTen" value="{{NhanVien.hoTen}}">
+            </div>
+            <div class="col-md-4">
+                <label for="inputGender" class="form-label">Giới tính</label>
+                <select Name="gioiTinh" id="inputGender" class="form-select">
+                    <option {% if NhanVien.gioiTinh == 'Nam' %} selected {% endif %}>Nam</option>
+                    <option {% if NhanVien.gioiTinh == 'Nữ' %} selected {% endif %}>Nữ</option>
+                </select>
+            </div>
+            
+            <div class="col-8">
+                <label for="inputPhone" class="form-label">SĐT</label>
+                <input type="text" class="form-control" id="inputPhone" Name="SDT" value="{{NhanVien.SDT}}">
+            </div>
+            <div class="col-md-4">
+                <label for="inputDate" class="form-label">Ngày sinh</label>
+                <input type="date" class="form-control" id="inputDate" Name="ngaySinh" value="{{NgaySinh}}">
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Địa chỉ</label>
+                <textarea class="form-control" Name="diaChi" id="inputAddress" rows="4" cols="50" >{{NhanVien.diaChi}}</textarea>
+            </div>    
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Sửa</button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+
+</main>
+{%endblock%}

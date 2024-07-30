@@ -1,0 +1,61 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Sửa dịch vụ
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Sửa dịch vụ</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="#">Dịch vụ</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Sửa dịch vụ</a>
+                </li>
+                
+            </ul>
+        </div>
+        <a href="#" class="btn-add">
+            <i class='bx bx-plus'></i>
+            <span class="text">Thêm</span>
+        </a>
+        <a href="#" class="btn-minus">
+            <i class='bx bx-minus'></i>
+            <span class="text">Xóa</span>
+        </a>
+    </div>
+    <div class="container mt-0">
+        {%if DichVu %}
+        <form class="row g-3" method="POST">
+            {% csrf_token %}
+            <div class="col-6">
+                <label for="inputName" class="form-label">Tên dịch vụ</label>
+                <input name="tenDV" type="text" class="form-control" id="inputName" value="{{DichVu.tenDV}}">
+            </div>
+            <div class="col-md-3">
+                <label for="inputCost" class="form-label">Giá</label>
+                <input name="gia" type="number" class="form-control" id="inputCost" value="{{DichVu.gia}}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Sửa</button>
+            </div>
+        </form>
+        {%endif%}
+    </div>
+
+</main>
+{%endblock%}

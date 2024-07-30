@@ -1,0 +1,92 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Nhân viên
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Nhân viên</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="{% url 'nv' %}">Nhân viên</a>
+                </li>
+            </ul>
+        </div>
+        <a href="{% url 'themnv' %}" class="btn-add">
+            <i class='bx bx-plus'></i>
+            <span class="text">Thêm</span>
+        </a>
+        
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Danh sách</h3>
+                <form action="{% url 'seachnv' %}" method="GET">
+                    {% csrf_token %}
+                    <div class="form-input">
+                        <input name="namesearch" type="search" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Họ tên</th>
+                        <th>Giới tính</th>
+                        <th>SĐT</th>
+                        <th>Ngày sinh</th>
+                        <th>Địa chỉ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nv in DS_NhanVien %}
+                    <tr>
+                        <td>
+                            <p>{{nv.hoTen}}</p>
+                        </td>
+                        <td>{{nv.gioiTinh}}</td>
+                        <td>{{nv.SDT}}</td>
+                        <td>{{nv.ngaySinh|date:'d/m/Y'}}</td>
+                        <td>{{nv.diaChi}}</td>
+                        <td>
+                            <a href="/NguoiDung/suanv/{{nv.id}}" class="btn-edit">
+                                <i class='bx bx-edit-alt'></i>
+                                <span class="text">Sửa</span>
+                            </a>
+                        </td>
+                        <td>
+                            <td>
+                                    <a href="/NguoiDung/xoanv/{{nv.id}}" class="btn-minus">
+                                        <span class="text">Xóa</span>
+                                    </a>
+                            </td>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+         </div>
+</main>
+<!-- MAIN -->
+<!-- CONTENT -->
+{% endblock %}

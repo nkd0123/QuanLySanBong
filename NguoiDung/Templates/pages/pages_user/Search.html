@@ -1,0 +1,28 @@
+{% extends "page_layout/layout_user/layout_user.html" %}
+
+{% load static %}
+{% block content %}
+<div class="row">
+    {% for sp in keys %}
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{% static  'img/placeholder.png' %}">
+        <div class="box-element product">
+            <h3><strong>{{sp.tenSan}}</strong></h3>
+
+           <h6> <span class="selling-price">Tinh Trang : {{sp.tinhTrang}}</span> </h6>
+           
+           <h6> <span class="selling-price">Kich Thuoc : {{sp.kichThuoc}}</span> </h6>
+            <hr>
+
+
+            <a class="btn-item btn-main" href="DS" >Đặt nhanh kẻo muộn</a>
+
+           
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+   
+   
+{% endblock  %}

@@ -1,0 +1,44 @@
+{% extends "page_layout/layout_user/layout_user.html" %}
+{% block title %}
+HOME
+{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="card">
+        <aside class="row no-gutters">
+            <article class="gallery-wrap">
+                <div class="img-big-wrap">
+                    <a href="#"><img class="w-100" src="{% static  'img/placeholder.png' %}"></a>
+
+                </div>
+
+            </article>
+        </aside>
+
+        <main class="col-md-9 border-left p-2">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <article class="content-body">
+                    <input type="hidden" value="{{session_username}}" name="username">
+                    <hr/>
+                    <div class="col-md-6 form-group">
+                        <label class="text-black font-weight-bold" for="thoigianDat">Date Check In</label>
+                        <input type="date" id="thoigianDat" class="form-control" name="thoigianDat">
+                      </div>
+                    <button type="submit" class="btn btn-success">
+                        <span class="text" > Dat San </span>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    
+                </article>
+            </form>
+
+        </main>
+       
+    </div>
+
+</div>
+
+
+{% endblock %}

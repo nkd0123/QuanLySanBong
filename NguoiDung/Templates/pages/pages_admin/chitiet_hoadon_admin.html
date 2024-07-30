@@ -1,0 +1,77 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+    Chi tiết hóa đơn
+{% endblock %}
+{% block content %}
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Chi tiết hóa đơn</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="{% url 'hd'%} ">Hóa đơn</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Chi tiết hóa đơn</a>
+                </li>
+            </ul>
+        </div>
+        {%if HoaDon%}
+        <a style="margin-left:150px" href="{%url 'xoacthd' sohd=HoaDon.soHD%}" class="btn-minus">
+            <span class="text">Xóa</span>
+        </a>
+        <a href="{% url 'themcthd' sohd=HoaDon.soHD %}" class="btn-add">
+            <i class='bx bx-plus'></i>
+            <span class="text">Thêm</span>
+        </a>
+        
+        {%endif%}
+        
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+            
+                {%if HoaDon%}
+                <h5>SOHD: {{HoaDon.soHD}} <br>
+                     Nhân viên lập: {{HoaDon.nv.hoTen}} <br>
+                     Khách hàng: {{HoaDon.kh.hoTen}}</h5>
+                {%endif%}
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dịch vụ</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for cthd in ChiTietHoaDon %}
+                    <tr>
+                        <td>{{cthd.dv.tenDV}}</td>
+                        <td>{{cthd.soluong}}</td>
+                        <td>{{cthd.dv.gia}}</td>
+                        
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<!-- MAIN -->
+<!-- CONTENT -->
+{% endblock %}

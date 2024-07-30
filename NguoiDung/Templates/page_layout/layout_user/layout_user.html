@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta nanme="viewport" content="width=device-width" ,initial-scale="1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/main2.css' %}" type="text/css" />
+   
+    <title> {% block title %} {% endblock %} </title>
+
+
+
+
+</head>
+
+<body>
+    <header>
+        <div nh-row="ge9pz4w" class="header-center">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-4 col-12">
+                        <div nh-block="qhdw2uy" nh-block-cache="true" class="">
+                            <div class="logo-section">
+                                <a class="navbar-brand me-auto" href="/NguoiDung/home">
+                                    <i class="fa-solid fa-futbol"></i>
+                                    Logo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div nh-block="8bxkyf0" nh-block-cache="false" class="">
+                            <div class="header__search">
+                                <form class="position-relative" role="search" method = POST action="{% url 'Search' %}" >
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <input  name="searched" placeholder="Từ khóa tìm kiếm" type="search" class="form-control bg-light" >
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-success" type="submit"> Search </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div nh-block="j1d703b" nh-block-cache="true" class="">
+                            <div nh-mini-member="" class="entire-action-header entire-action-header-login">
+                                <a class="btn-user btn-action-header" title="Tài khoản" href="javascript:;">
+
+                                    <span>San The Thao</span>
+                                </a>
+                                <div class="content">
+                                    <div >
+                                        <a href="{% url 'danhsachsan' %}" previewlistener="true">Danh Sach San</a>
+                                    </div>
+
+                                    <div >
+                                        <a href="{% url 'dsloai' %}" previewlistener="true">Danh Sach San Theo Loai</a>
+                                    </div>
+                                    <div >
+                                        <a href="#" previewlistener="true">San Da Dat</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div nh-block="cdr93am" nh-block-cache="false" class="">
+                        </div>
+                        <div nh-block="9g2txoj" nh-block-cache="false" class="">
+                        </div>
+                        <div nh-block="g1syznh" nh-block-cache="true" class="">
+                            <div nh-mini-member="" class="entire-action-header entire-action-header-login">
+                                <a class="btn-user btn-action-header" title="Tài khoản" href="javascript:;">
+
+                                    <span>Tài khoản</span>
+                                </a>
+                                <div class="content">
+                                    <div class="btn-login">
+                                        <a title="Tài khoản" href="{% url 'login' %}" data-toggle="modal" data-target="#login-modal" >Đăng nhập</a>
+                                    </div>
+                                    <div class="btn-register">
+                                        <a href="{% url 'register' %}" previewlistener="true">Đăng ký tài khoản</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div nh-block="i57yxn3" nh-block-cache="true" class="float-right">
+                            <div class="entire-action-header">
+                                <a class="btn-mini-cart btn-action-header" nh-mini-cart="open" title="Giờ" href="javascript:;">
+                                    {% if session_username %}
+                                        <span>Hello ! {{session_username}}</span>
+                                    {% endif %}
+                                    <span><a href="{% url 'logout' %}"> Logout </a></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div nh-row="c0vpj93" class="bg-white mb-5 box-dss-01"><div class="container"><div class="row "><div class="col-md-12 col-12"><div nh-block="bsw6ext" nh-block-cache="false" class=""><nav class="breadcrumbs-section my-2"></a></nav></div></div></div></div></div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                {% block content %}
+                {% block register %} {% endblock register %}
+              
+                {% endblock %} 
+            </div>
+        </div>
+        <!--End Content-->
+        <!-- Footer-->
+        <footer>
+            <div class="footerContainer">
+                <div class="social-icon">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-facebook-messenger"></i></a>
+                    <a href=""><i class="fa-solid fa-envelope"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    <a href=""><i class="fa-solid fa-phone"></i></a>
+                </div>
+                <div class="footerNav">
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Service</a></li>
+                    </ul>
+                </div>
+                <div class="footerBot">
+                    <p>Copyright &copy; 2024; Designed by <span class="designer">Lang tu xinh gai</span></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script type="application/ld+json">
+            {"@context":"https:\/\/schema.org","@type":"Organization","name":"TheGioiTheThao.vn","legalName":"C\u00f4ng ty C\u1ed5 Ph\u1ea7n Th\u01b0\u01a1ng M\u1ea1i V\u00e0 X\u00e2y D\u1ef1ng Th\u1ebf Gi\u1edbi Th\u1ec3 Thao","url":"https:\/\/thegioithethao.vn\/","logo":"https:\/\/img.thegioithethao.vn\/media\/logo\/logo.svg"}
+        </script>
+
+
+
+        <script type="application/ld+json">
+            {"@context":"https:\/\/schema.org","@type":"WebSite","url":"https:\/\/thegioithethao.vn","potentialAction":{"@type":"SearchAction","target":"https:\/\/thegioithethao.vn\/tim-kiem?keyword={query}","query-input":"required name=query"}}
+        </script>
+
+
+
+
+
+
+        <script type="application/ld+json">
+            {"@context":"https:\/\/schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/thegioithethao.vn","name":"TheGioiTheThao.vn"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/thegioithethao.vn\/thiet-ke-thi-cong","name":"Thi\u1ebft k\u1ebf & Thi c\u00f4ng"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/thegioithethao.vn\/thiet-ke-quy-trinh-chi-phi-thi-cong-san-cau-long","name":"Thi\u1ebft k\u1ebf, quy tr\u00ecnh & chi ph\u00ed thi c\u00f4ng s\u00e2n c\u1ea7u l\u00f4ng"}}]}
+        </script>
+
+
+
+
+
+
+
+
+
+        <script type="application/ld+json">
+            {"@context":"https:\/\/schema.org","@type":"NewsArticle","headline":"Thi\u1ebft k\u1ebf, quy tr\u00ecnh & chi ph\u00ed thi c\u00f4ng s\u00e2n c\u1ea7u l\u00f4ng","image":"https:\/\/img.thegioithethao.vn\/media\/tin-tuc\/thiet-ke-thi-cong\/san-cau-long\/thiet-ke-san-cau-long-1.webp","dateModified":"1970-01-01 08:00:06","datePublished":"1970-01-01 08:00:09","publisher":{"@type":"Organization","name":"TheGioiTheThao.vn","logo":{"@type":"ImageObject","url":"https:\/\/img.thegioithethao.vn\/media\/logo\/logo.svg"}},"author":"TheGioiTheThao.vn","mainEntityOfPage":"https:\/\/thegioithethao.vn\/thiet-ke-quy-trinh-chi-phi-thi-cong-san-cau-long","aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"1"}}
+        </script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

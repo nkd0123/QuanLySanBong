@@ -1,0 +1,83 @@
+﻿{% extends "page_layout/layout_admin/layout_admin.html" %}
+{% block title %}
+Sân bóng
+{% endblock %}
+{% block content %}
+
+<nav>
+    <a href="#" class="profile">
+        <i class='bx bxs-user'></i>
+    </a>
+    {% if session_username %}
+        <strong>{{ session_username }}</strong>
+    {% endif %}
+</nav>
+<!-- NAVBAR -->
+<!-- MAIN -->
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Sân bóng</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a href="#">Sân bóng</a>
+                </li>
+                
+                
+            </ul>
+        </div>
+        <a href="{% url 'themsb' %}" class="btn-add">
+            <i class='bx bx-plus'></i>
+            <span class="text">Thêm</span>
+        </a>
+        
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Danh sách sân bóng</h3>
+                <form action="{% url 'searchsb' %}" method="GET">
+                    {% csrf_token %}
+                    <div class="form-input">
+                        <input name="seachsb" type="search" placeholder="Search...">
+                        <button  type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên sân</th>
+                        <th>Tráng thái</th>
+                        <th>Size</th>
+                        <th>Loại sân</th>
+                        <td></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for ds in DS_SanBong%}
+                    <tr>
+                        <td>
+                            <p>{{ds.tenSan}}</p>
+                        </td>
+                        <td><span class="status process">{{ds.tinhTrang}}</span></td>
+                        <td>{{ds.kichThuoc}}</td>
+                        <td>{{ds.maloai.tenLoai}}</td>
+                        <td><a href="{% url 'xoasb' id=ds.id %}" class="btn-minus">
+                            <span class="text">Xóa</span>
+                        </a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<!-- MAIN -->
+<!-- CONTENT -->
+{% endblock %}
